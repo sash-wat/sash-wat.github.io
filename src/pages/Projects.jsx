@@ -1,21 +1,23 @@
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const projects = [
     {
-        title: 'Generative AI in Finance (Paper)',
-        description: 'A pre-print exploring applications, methodologies, and findings related to generative models within the financial services sector.',
-        tags: ['Machine Learning', 'Generative AI', 'Finance', 'Research'],
+        title: 'Multimodal Deep RL for Portfolio Optimization',
+        description: 'A reinforcement learning framework fusing historical stock data, SEC sentiment, and news embeddings to optimize SP100 trading strategies.',
+        tags: ['Machine Learning', 'Reinforcement Learning', 'Finance', 'Research'],
         github: null,
         demo: 'https://arxiv.org/abs/2412.17293',
         demoLabel: 'View Paper'
     },
     {
         title: 'Soccer Analysis Blog',
-        description: 'An interactive exploration and analysis of soccer metrics, utilizing R and hosted on GitHub Pages.',
+        description: 'An interactive exploration of soccer metrics using R, revealing the hidden statistical drivers behind elite forward valuations.',
         tags: ['Data Science', 'Sports Analytics', 'R'],
         github: null,
-        demo: 'https://sash-wat.github.io/JOUR479XSite/_site/posts/soccer-analysis/',
-        demoLabel: 'Read Post'
+        demo: '/projects/soccer-analysis',
+        demoLabel: 'Read Post',
+        isInternal: true
     }
 ];
 
@@ -51,9 +53,15 @@ export default function Projects() {
                                 </a>
                             )}
                             {project.demo && (
-                                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-[var(--color-cfc-blue)] hover:text-[var(--color-cfc-gold-bright)] transition-colors flex items-center gap-1 text-sm font-medium">
-                                    <ExternalLink size={16} /> {project.demoLabel || 'Live Demo'}
-                                </a>
+                                project.isInternal ? (
+                                    <Link to={project.demo} className="text-[var(--color-cfc-blue)] hover:text-[var(--color-cfc-gold-bright)] transition-colors flex items-center gap-1 text-sm font-medium">
+                                        {project.demoLabel || 'View Project'} <ArrowRight size={16} />
+                                    </Link>
+                                ) : (
+                                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-[var(--color-cfc-blue)] hover:text-[var(--color-cfc-gold-bright)] transition-colors flex items-center gap-1 text-sm font-medium">
+                                        <ExternalLink size={16} /> {project.demoLabel || 'Live Demo'}
+                                    </a>
+                                )
                             )}
                         </div>
                     </div>
