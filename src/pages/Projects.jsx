@@ -2,25 +2,20 @@ import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
     {
-        title: 'E-Commerce Platform',
-        description: 'A full-stack e-commerce solution with dynamic inventory management and seamless checkout experience.',
-        tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-        github: '#',
-        demo: '#',
+        title: 'Generative AI in Finance (Paper)',
+        description: 'A pre-print exploring applications, methodologies, and findings related to generative models within the financial services sector.',
+        tags: ['Machine Learning', 'Generative AI', 'Finance', 'Research'],
+        github: null,
+        demo: 'https://arxiv.org/abs/2412.17293',
+        demoLabel: 'View Paper'
     },
     {
-        title: 'AI Productivity Assistant',
-        description: 'An AI-powered application that seamlessly integrates with your calendar to optimize daily workflows and task scheduling.',
-        tags: ['Next.js', 'TypeScript', 'OpenAI API'],
-        github: '#',
-        demo: '#',
-    },
-    {
-        title: 'Chelsea Fan Hub',
-        description: 'A real-time dashboard for match stats, player analytics, and live community discussions.',
-        tags: ['Vue', 'Firebase', 'Tailwind'],
-        github: '#',
-        demo: '#',
+        title: 'Soccer Analysis Blog',
+        description: 'An interactive exploration and analysis of soccer metrics, utilizing R and hosted on GitHub Pages.',
+        tags: ['Data Science', 'Sports Analytics', 'R'],
+        github: null,
+        demo: 'https://sash-wat.github.io/JOUR479XSite/_site/posts/soccer-analysis/',
+        demoLabel: 'Read Post'
     }
 ];
 
@@ -28,10 +23,10 @@ export default function Projects() {
     return (
         <div className="container mx-auto px-6 py-12 md:py-24">
             <div className="max-w-4xl mb-12 animate-fade-in">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Selected Projects</h1>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Selected Work</h1>
                 <p className="text-xl text-gray-400">
-                    A showcase of my favorite deep dives in software engineering,
-                    from scalable backends to highly interactive frontends.
+                    A showcase of my recent research, analyses, and projects spanning
+                    machine learning, finance, and sports analytics.
                 </p>
             </div>
 
@@ -50,16 +45,20 @@ export default function Projects() {
                         </div>
 
                         <div className="flex gap-4">
-                            <a href={project.github} className="text-gray-400 hover:text-white transition-colors flex items-center gap-1 text-sm">
-                                <Github size={16} /> Code
-                            </a>
-                            <a href={project.demo} className="text-[var(--color-cfc-blue)] hover:text-[var(--color-cfc-gold-bright)] transition-colors flex items-center gap-1 text-sm font-medium">
-                                <ExternalLink size={16} /> Live Demo
-                            </a>
+                            {project.github && (
+                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors flex items-center gap-1 text-sm">
+                                    <Github size={16} /> Code
+                                </a>
+                            )}
+                            {project.demo && (
+                                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-[var(--color-cfc-blue)] hover:text-[var(--color-cfc-gold-bright)] transition-colors flex items-center gap-1 text-sm font-medium">
+                                    <ExternalLink size={16} /> {project.demoLabel || 'Live Demo'}
+                                </a>
+                            )}
                         </div>
                     </div>
                 ))}
             </div>
-        </div>
+        </div >
     );
 }

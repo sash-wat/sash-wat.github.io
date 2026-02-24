@@ -18,8 +18,7 @@ function Header() {
 
     const navLinks = [
         { name: 'Home', path: '/' },
-        { name: 'Projects', path: '/projects' },
-        { name: 'Writing', path: '/writing' },
+        { name: 'Selected Work', path: '/projects' },
     ];
 
     return (
@@ -47,7 +46,7 @@ function Header() {
                             {link.name}
                         </Link>
                     ))}
-                    <a href="#" className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-cfc-blue)] text-sm font-medium text-white hover:bg-[var(--color-cfc-blue)] transition-all">
+                    <a href="mailto:sashwat.venkatesh@gmail.com" className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-cfc-blue)] text-sm font-medium text-white hover:bg-[var(--color-cfc-blue)] transition-all">
                         Contact
                     </a>
                 </nav>
@@ -91,11 +90,10 @@ function Footer() {
                 </div>
 
                 <div className="flex items-center gap-6">
-                    <a href="#" className="text-gray-400 hover:text-[var(--color-cfc-gold-bright)] transition-colors"><Github size={20} /></a>
-                    <a href="#" className="text-gray-400 hover:text-[var(--color-cfc-gold-bright)] transition-colors"><Linkedin size={20} /></a>
-                    <a href="#" className="text-gray-400 hover:text-[var(--color-cfc-gold-bright)] transition-colors"><Twitter size={20} /></a>
-                </div>
-            </div>
+                    <a href="https://github.com/sash-wat" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-cfc-gold-bright)] transition-colors"><Github size={20} /></a>
+                    <a href="https://www.linkedin.com/in/sashvenk/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-cfc-gold-bright)] transition-colors"><Linkedin size={20} /></a>
+                    <a href="https://x.com/sash_wat117" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-cfc-gold-bright)] transition-colors"><Twitter size={20} /></a>
+                </div>            </div>
         </footer>
     );
 }
