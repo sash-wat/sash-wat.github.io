@@ -28,7 +28,7 @@ function Header() {
         )}>
             <div className="container mx-auto px-6 h-20 flex items-center justify-between">
                 <Link to="/" className="text-2xl font-bold tracking-tighter">
-                    <span className="text-white">SD</span>
+                    <span className="text-white">SV</span>
                     <span className="text-[var(--color-cfc-gold-bright)]">.</span>
                 </Link>
 
