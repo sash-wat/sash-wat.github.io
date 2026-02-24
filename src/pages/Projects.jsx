@@ -11,7 +11,7 @@ const projects = [
         demoLabel: 'View Paper'
     },
     {
-        title: 'Soccer Analysis Blog',
+        title: 'Statistical Valuation of Elite Forwards',
         description: 'An interactive exploration of soccer metrics using R, revealing the hidden statistical drivers behind elite forward valuations.',
         tags: ['Data Science', 'Sports Analytics', 'R'],
         github: null,
