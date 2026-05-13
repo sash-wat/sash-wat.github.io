@@ -13,25 +13,29 @@ export default function Home() {
     useGSAP(() => {
         // Hero Animation
         const tl = gsap.timeline();
-        tl.from('.hero-badge', { y: 20, opacity: 0, duration: 0.6, ease: 'power3.out' })
-          .from('.hero-title-line', { y: 40, opacity: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' }, '-=0.3')
-          .from('.hero-desc', { y: 20, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.4')
-          .from('.hero-actions', { y: 20, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-          .from('.hero-scroll', { opacity: 0, y: -10, duration: 1, yoyo: true, repeat: -1 }, '+=0.5');
+        tl.fromTo('.hero-badge', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out', clearProps: "all" })
+          .fromTo('.hero-title-line', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power3.out', clearProps: "all" }, '-=0.3')
+          .fromTo('.hero-desc', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', clearProps: "all" }, '-=0.4')
+          .fromTo('.hero-actions', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out', clearProps: "all" }, '-=0.4')
+          .fromTo('.hero-scroll', { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 1, yoyo: true, repeat: -1 }, '+=0.5');
 
         // Scroll Animations
         gsap.utils.toArray('.scroll-section').forEach(section => {
-            gsap.from(section.querySelectorAll('.fade-up'), {
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                },
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: 'power3.out'
-            });
+            gsap.fromTo(section.querySelectorAll('.fade-up'), 
+                { y: 50, opacity: 0 },
+                {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                    },
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: 'power3.out',
+                    clearProps: "all"
+                }
+            );
         });
 
     }, { scope: container });

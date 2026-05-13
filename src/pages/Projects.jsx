@@ -10,7 +10,7 @@ const projects = [
         description: 'An interactive dashboard for American soccer analytics, featuring the Tactical-Value Mapping System (TVMS) to classify player archetypes across the MLS, USLC, and NWSL.',
         tags: ['React', 'Sports Analytics', 'Machine Learning', 'Data Visualization'],
         github: null,
-        demo: null,
+        demo: '#',
         demoLabel: 'Live Demo',
         image: '/league_pulse.png'
     },
@@ -19,7 +19,7 @@ const projects = [
         description: 'A platform for dynamic, era-based curriculum vitae generation and timeline visualization.',
         tags: ['Web Development', 'React', 'Frontend'],
         github: null,
-        demo: null,
+        demo: '#',
         demoLabel: 'Live Demo',
         image: '/eracv.png'
     },
@@ -48,22 +48,30 @@ export default function Projects() {
     const container = useRef();
 
     useGSAP(() => {
-        gsap.from('.header-text', {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: "power3.out"
-        });
+        gsap.fromTo('.header-text', 
+            { y: 30, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power3.out",
+                clearProps: "all"
+            }
+        );
 
-        gsap.from('.project-card', {
-            y: 50,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: "power3.out",
-            delay: 0.3
-        });
+        gsap.fromTo('.project-card', 
+            { y: 50, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: "power3.out",
+                delay: 0.3,
+                clearProps: "all"
+            }
+        );
     }, { scope: container });
 
     return (
@@ -79,8 +87,21 @@ export default function Projects() {
                 {projects.map((project, index) => (
                     <div key={index} className="project-card group rounded-2xl overflow-hidden flex flex-col border border-gray-800 bg-[#111827] hover:border-[var(--color-cfc-blue)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(3,70,148,0.2)]">
                         <div className="w-full h-64 md:h-80 overflow-hidden relative border-b border-gray-800">
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent z-10 opacity-60"></div>
-                            <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent z-10 opacity-60 pointer-events-none"></div>
+                            {project.demo && (
+                                project.isInternal ? (
+                                    <Link to={project.demo} className="absolute inset-0 z-20">
+                                        <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                                    </Link>
+                                ) : (
+                                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-20">
+                                        <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                                    </a>
+                                )
+                            )}
+                            {!project.demo && (
+                                <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                            )}
                         </div>
                         
                         <div className="p-8 flex flex-col flex-grow relative z-20">
@@ -97,17 +118,17 @@ export default function Projects() {
 
                             <div className="flex gap-4">
                                 {project.github && (
-                                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium">
+                                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium z-30">
                                         <Github size={18} /> Source Code
                                     </a>
                                 )}
                                 {project.demo && (
                                     project.isInternal ? (
-                                        <Link to={project.demo} className="text-[var(--color-cfc-gold-bright)] hover:text-white transition-colors flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
+                                        <Link to={project.demo} className="text-[var(--color-cfc-gold-bright)] hover:text-white transition-colors flex items-center gap-2 text-sm font-bold uppercase tracking-wider z-30">
                                             {project.demoLabel || 'View Project'} <ArrowRight size={18} />
                                         </Link>
                                     ) : (
-                                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-[var(--color-cfc-gold-bright)] hover:text-white transition-colors flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
+                                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-[var(--color-cfc-gold-bright)] hover:text-white transition-colors flex items-center gap-2 text-sm font-bold uppercase tracking-wider z-30">
                                             <ExternalLink size={18} /> {project.demoLabel || 'Live Demo'}
                                         </a>
                                     )
