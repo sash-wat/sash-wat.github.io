@@ -1,7 +1,26 @@
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { useRef } from 'react';
 
 const projects = [
+    {
+        title: 'League Pulse Analytics',
+        description: 'An interactive dashboard for American soccer analytics, featuring the Tactical-Value Mapping System (TVMS) to classify player archetypes across the MLS, USLC, and NWSL.',
+        tags: ['React', 'Sports Analytics', 'Machine Learning', 'Data Visualization'],
+        github: null,
+        demo: null,
+        demoLabel: 'Live Demo'
+    },
+    {
+        title: 'EraCV',
+        description: 'A platform for dynamic, era-based curriculum vitae generation and timeline visualization.',
+        tags: ['Web Development', 'React', 'Frontend'],
+        github: null,
+        demo: null,
+        demoLabel: 'Live Demo'
+    },
     {
         title: 'Multimodal Deep RL for Portfolio Optimization',
         description: 'A reinforcement learning framework fusing historical stock data, SEC sentiment, and news embeddings to optimize SP100 trading strategies.',
@@ -22,19 +41,40 @@ const projects = [
 ];
 
 export default function Projects() {
+    const container = useRef();
+
+    useGSAP(() => {
+        gsap.from('.header-text', {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        gsap.from('.project-card', {
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out",
+            delay: 0.3
+        });
+    }, { scope: container });
+
     return (
-        <div className="container mx-auto px-6 py-12 md:py-24">
-            <div className="max-w-4xl mb-12 animate-fade-in">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Selected Work</h1>
-                <p className="text-xl text-gray-400">
+        <div className="container mx-auto px-6 py-12 md:py-24" ref={container}>
+            <div className="max-w-4xl mb-12">
+                <h1 className="header-text text-4xl md:text-5xl font-bold mb-4 tracking-tight">Selected Work</h1>
+                <p className="header-text text-xl text-gray-400">
                     A showcase of my recent research, analyses, and projects spanning
                     machine learning, finance, and sports analytics.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in delay-200">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map((project, index) => (
-                    <div key={index} className="glow-on-hover rounded-xl p-6 flex flex-col h-full border border-gray-800 bg-[#111827]">
+                    <div key={index} className="project-card glow-on-hover rounded-xl p-6 flex flex-col h-full border border-gray-800 bg-[#111827]">
                         <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[var(--color-cfc-gold-bright)] transition-colors">{project.title}</h3>
                         <p className="text-gray-400 mb-6 flex-grow">{project.description}</p>
 
