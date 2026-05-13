@@ -19,6 +19,7 @@ function Header() {
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'Selected Work', path: '/projects' },
+        { name: 'Experience', path: '/experience' },
     ];
 
     return (
