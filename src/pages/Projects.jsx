@@ -11,7 +11,8 @@ const projects = [
         tags: ['React', 'Sports Analytics', 'Machine Learning', 'Data Visualization'],
         github: null,
         demo: null,
-        demoLabel: 'Live Demo'
+        demoLabel: 'Live Demo',
+        image: '/league_pulse.png'
     },
     {
         title: 'EraCV',
@@ -19,7 +20,8 @@ const projects = [
         tags: ['Web Development', 'React', 'Frontend'],
         github: null,
         demo: null,
-        demoLabel: 'Live Demo'
+        demoLabel: 'Live Demo',
+        image: '/eracv.png'
     },
     {
         title: 'Multimodal Deep RL for Portfolio Optimization',
@@ -27,7 +29,8 @@ const projects = [
         tags: ['Machine Learning', 'Reinforcement Learning', 'Finance', 'Research'],
         github: null,
         demo: 'https://arxiv.org/abs/2412.17293',
-        demoLabel: 'View Paper'
+        demoLabel: 'View Paper',
+        image: '/portfolio_rl.png'
     },
     {
         title: 'Statistical Valuation of Elite Forwards',
@@ -36,7 +39,8 @@ const projects = [
         github: null,
         demo: '/projects/soccer-analysis',
         demoLabel: 'Read Post',
-        isInternal: true
+        isInternal: true,
+        image: '/soccer_valuation.png'
     }
 ];
 
@@ -64,49 +68,55 @@ export default function Projects() {
 
     return (
         <div className="container mx-auto px-6 py-12 md:py-24" ref={container}>
-            <div className="max-w-4xl mb-12">
-                <h1 className="header-text text-4xl md:text-5xl font-bold mb-4 tracking-tight">Selected Work</h1>
-                <p className="header-text text-xl text-gray-400">
-                    A showcase of my recent research, analyses, and projects spanning
-                    machine learning, finance, and sports analytics.
+            <div className="max-w-4xl mb-16">
+                <h1 className="header-text text-5xl md:text-6xl font-bold mb-6 tracking-tight">Showcase & <span className="text-gradient">Case Studies</span></h1>
+                <p className="header-text text-xl md:text-2xl text-gray-400 leading-relaxed max-w-2xl">
+                    A deep dive into my recent work architecting scalable solutions, predictive models, and beautiful data visualizations.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                 {projects.map((project, index) => (
-                    <div key={index} className="project-card glow-on-hover rounded-xl p-6 flex flex-col h-full border border-gray-800 bg-[#111827]">
-                        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[var(--color-cfc-gold-bright)] transition-colors">{project.title}</h3>
-                        <p className="text-gray-400 mb-6 flex-grow">{project.description}</p>
-
-                        <div className="flex flex-wrap gap-2 mb-6">
-                            {project.tags.map(tag => (
-                                <span key={tag} className="text-xs font-medium px-2.5 py-1 rounded-full bg-[rgba(3,70,148,0.2)] text-[var(--color-cfc-blue)] border border-[rgba(3,70,148,0.3)]">
-                                    {tag}
-                                </span>
-                            ))}
+                    <div key={index} className="project-card group rounded-2xl overflow-hidden flex flex-col border border-gray-800 bg-[#111827] hover:border-[var(--color-cfc-blue)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(3,70,148,0.2)]">
+                        <div className="w-full h-64 md:h-80 overflow-hidden relative border-b border-gray-800">
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent z-10 opacity-60"></div>
+                            <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                         </div>
+                        
+                        <div className="p-8 flex flex-col flex-grow relative z-20">
+                            <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[var(--color-cfc-gold-bright)] transition-colors">{project.title}</h3>
+                            <p className="text-gray-400 mb-6 flex-grow text-lg">{project.description}</p>
 
-                        <div className="flex gap-4">
-                            {project.github && (
-                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors flex items-center gap-1 text-sm">
-                                    <Github size={16} /> Code
-                                </a>
-                            )}
-                            {project.demo && (
-                                project.isInternal ? (
-                                    <Link to={project.demo} className="text-[var(--color-cfc-blue)] hover:text-[var(--color-cfc-gold-bright)] transition-colors flex items-center gap-1 text-sm font-medium">
-                                        {project.demoLabel || 'View Project'} <ArrowRight size={16} />
-                                    </Link>
-                                ) : (
-                                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-[var(--color-cfc-blue)] hover:text-[var(--color-cfc-gold-bright)] transition-colors flex items-center gap-1 text-sm font-medium">
-                                        <ExternalLink size={16} /> {project.demoLabel || 'Live Demo'}
+                            <div className="flex flex-wrap gap-2 mb-8">
+                                {project.tags.map(tag => (
+                                    <span key={tag} className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[rgba(3,70,148,0.2)] text-[var(--color-cfc-blue)] border border-[rgba(3,70,148,0.3)] uppercase tracking-wider">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+
+                            <div className="flex gap-4">
+                                {project.github && (
+                                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium">
+                                        <Github size={18} /> Source Code
                                     </a>
-                                )
-                            )}
+                                )}
+                                {project.demo && (
+                                    project.isInternal ? (
+                                        <Link to={project.demo} className="text-[var(--color-cfc-gold-bright)] hover:text-white transition-colors flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
+                                            {project.demoLabel || 'View Project'} <ArrowRight size={18} />
+                                        </Link>
+                                    ) : (
+                                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-[var(--color-cfc-gold-bright)] hover:text-white transition-colors flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
+                                            <ExternalLink size={18} /> {project.demoLabel || 'Live Demo'}
+                                        </a>
+                                    )
+                                )}
+                            </div>
                         </div>
                     </div>
                 ))}
             </div>
-        </div >
+        </div>
     );
 }
