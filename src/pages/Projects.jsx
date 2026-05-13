@@ -11,8 +11,7 @@ const projects = [
         tags: ['React', 'Sports Analytics', 'Machine Learning', 'Data Visualization'],
         github: null,
         demo: '#',
-        demoLabel: 'Live Demo',
-        image: '/league_pulse.png'
+        demoLabel: 'Live Demo'
     },
     {
         title: 'EraCV',
@@ -20,8 +19,7 @@ const projects = [
         tags: ['Web Development', 'React', 'Frontend'],
         github: null,
         demo: '#',
-        demoLabel: 'Live Demo',
-        image: '/eracv.png'
+        demoLabel: 'Live Demo'
     },
     {
         title: 'Multimodal Deep RL for Portfolio Optimization',
@@ -29,8 +27,7 @@ const projects = [
         tags: ['Machine Learning', 'Reinforcement Learning', 'Finance', 'Research'],
         github: null,
         demo: 'https://arxiv.org/abs/2412.17293',
-        demoLabel: 'View Paper',
-        image: '/portfolio_rl.png'
+        demoLabel: 'View Paper'
     },
     {
         title: 'Statistical Valuation of Elite Forwards',
@@ -39,8 +36,7 @@ const projects = [
         github: null,
         demo: '/projects/soccer-analysis',
         demoLabel: 'Read Post',
-        isInternal: true,
-        image: '/soccer_valuation.png'
+        isInternal: true
     }
 ];
 
@@ -83,32 +79,17 @@ export default function Projects() {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
                 {projects.map((project, index) => (
-                    <div key={index} className="project-card group rounded-2xl overflow-hidden flex flex-col border border-gray-800 bg-[#111827] hover:border-[var(--color-cfc-blue)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(3,70,148,0.2)]">
-                        <div className="w-full h-64 md:h-80 overflow-hidden relative border-b border-gray-800">
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent z-10 opacity-60 pointer-events-none"></div>
-                            {project.demo && (
-                                project.isInternal ? (
-                                    <Link to={project.demo} className="absolute inset-0 z-20">
-                                        <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
-                                    </Link>
-                                ) : (
-                                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-20">
-                                        <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
-                                    </a>
-                                )
-                            )}
-                            {!project.demo && (
-                                <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
-                            )}
-                        </div>
+                    <div key={index} className="project-card group rounded-2xl overflow-hidden flex flex-col border border-gray-800 bg-[#111827]/80 backdrop-blur-sm hover:border-[var(--color-cfc-blue)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(3,70,148,0.15)] relative">
+                        {/* Subtle background glow on hover */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-[rgba(3,70,148,0.1)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0"></div>
                         
-                        <div className="p-8 flex flex-col flex-grow relative z-20">
-                            <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[var(--color-cfc-gold-bright)] transition-colors">{project.title}</h3>
-                            <p className="text-gray-400 mb-6 flex-grow text-lg">{project.description}</p>
+                        <div className="p-10 flex flex-col flex-grow relative z-20">
+                            <h3 className="text-3xl font-bold text-white mb-4 group-hover:text-[var(--color-cfc-gold-bright)] transition-colors">{project.title}</h3>
+                            <p className="text-gray-400 mb-10 flex-grow text-lg leading-relaxed">{project.description}</p>
 
-                            <div className="flex flex-wrap gap-2 mb-8">
+                            <div className="flex flex-wrap gap-2 mb-8 mt-auto">
                                 {project.tags.map(tag => (
                                     <span key={tag} className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[rgba(3,70,148,0.2)] text-[var(--color-cfc-blue)] border border-[rgba(3,70,148,0.3)] uppercase tracking-wider">
                                         {tag}
@@ -116,7 +97,7 @@ export default function Projects() {
                                 ))}
                             </div>
 
-                            <div className="flex gap-4">
+                            <div className="flex gap-6 border-t border-gray-800/50 pt-6">
                                 {project.github && (
                                     <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium z-30">
                                         <Github size={18} /> Source Code
