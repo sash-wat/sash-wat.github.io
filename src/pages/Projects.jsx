@@ -10,15 +10,15 @@ const projects = [
         description: 'An interactive dashboard for American soccer analytics, featuring the Tactical-Value Mapping System (TVMS) to classify player archetypes across the MLS, USLC, and NWSL.',
         tags: ['React', 'Sports Analytics', 'Machine Learning', 'Data Visualization'],
         github: null,
-        demo: '#',
+        demo: null,
         demoLabel: 'Live Demo'
     },
     {
-        title: 'EraCV',
+        title: 'VERA',
         description: 'A platform for dynamic, era-based curriculum vitae generation and timeline visualization.',
         tags: ['Web Development', 'React', 'Frontend'],
         github: null,
-        demo: '#',
+        demo: null,
         demoLabel: 'Live Demo'
     },
     {
