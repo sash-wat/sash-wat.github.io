@@ -57,7 +57,7 @@ export default function Home() {
                     
                     <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
                         <div className="hero-title-line overflow-hidden py-1">Hi, I'm <span className="text-white">Sashwat.</span></div>
-                        <div className="hero-title-line overflow-hidden py-1 text-[var(--color-cfc-gold-bright)]">Data Scientist & Developer.</div>
+                        <div className="hero-title-line overflow-hidden py-1 text-[var(--color-cfc-gold-bright)]">Applied AI Engineer.</div>
                     </h1>
 
                     <p className="hero-desc text-xl text-gray-400 mb-10 max-w-2xl leading-relaxed">
@@ -81,8 +81,8 @@ export default function Home() {
             </section>
 
             {/* Quick Highlights Section */}
-            <section className="scroll-section container mx-auto px-6 py-16 border-t border-gray-800/50 relative">
-                <div className="max-w-3xl mb-12 fade-up">
+            <section className="scroll-section container mx-auto px-6 pt-32 pb-24 mt-8 border-t border-gray-800/50 relative">
+                <div className="max-w-3xl mb-16 fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">A bit about what I do.</h2>
                     <p className="text-lg text-gray-400 leading-relaxed">
                         My work revolves around extracting value from complex datasets and building the systems that serve them. Here's a snapshot of where my focus lies, both in the office and in my free time.
