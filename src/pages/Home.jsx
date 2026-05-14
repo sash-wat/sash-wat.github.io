@@ -95,7 +95,7 @@ export default function Home() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
                     {skills.map((skill, index) => (
                         <div key={index} className="fade-up glow-on-hover p-8 rounded-2xl bg-[#111827]/50 backdrop-blur-sm border border-gray-800 flex flex-col gap-4">
                             <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[rgba(3,70,148,0.3)] to-transparent flex items-center justify-center text-[var(--color-cfc-blue)] border border-[rgba(3,70,148,0.2)]">
@@ -109,8 +109,8 @@ export default function Home() {
             </section>
 
             {/* Featured Work CTA */}
-            <section className="scroll-section container mx-auto px-6 py-24 mb-12">
-                <div className="fade-up p-12 rounded-3xl bg-gradient-to-r from-[#111827] to-[#0a0f1a] border border-gray-800 relative overflow-hidden">
+            <section className="scroll-section container mx-auto px-6 pb-32 pt-16">
+                <div className="fade-up p-12 md:p-16 rounded-3xl bg-gradient-to-r from-[#111827] to-[#0a0f1a] border border-gray-800 relative overflow-hidden shadow-2xl mt-12 md:mt-24">
                     <div className="absolute top-0 right-0 w-64 h-full bg-gradient-to-l from-[rgba(3,70,148,0.1)] to-transparent pointer-events-none"></div>
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                         <div className="max-w-2xl">
