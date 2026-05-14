@@ -1,157 +1,103 @@
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { useRef } from 'react';
-import { Briefcase, GraduationCap, Code } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
-
-const experiences = [
-    {
-        role: 'Technology Leadership Program',
-        company: 'Vanguard',
-        date: 'August 2024 - Present',
-        location: 'Malvern, PA',
-        icon: <Briefcase size={20} />,
-        bullets: [
-            'Rotation 3: Contributed to Generative AI-based offerings for ETF Operations professionals to conduct research through a chat interface, and developed tools to improve developer efficiency by automating pieces of the SDLC.',
-            'Rotation 2: Planned and began implementation of a data reconciliation tool to validate data pipeline modernization efforts. Contributed to a Generative AI project for enterprise-wide metadata access.',
-            'Rotation 1: Contributed to cloud-native proprietary fund accounting and pricing platform. Worked on a Generative AI Proof of Concept to expedite common reporting processes.'
-        ]
-    },
-    {
-        role: 'Investment Systems Software Development Intern',
-        company: 'Vanguard',
-        date: 'May 2023 - August 2023',
-        location: 'Malvern, PA',
-        icon: <Code size={20} />,
-        bullets: [
-            'Created a webapp to display municipal bond metrics to improve trading decisions and profitability for fixed income security traders.',
-            'Utilized TypeScript and the React framework to design the user interface.',
-            'Connected webapp to Amazon S3 buckets to draw up-to-date bond information.'
-        ]
-    },
-    {
-        role: 'Application Developer / Intern',
-        company: 'Vanguard',
-        date: 'June 2022 - December 2022',
-        location: 'Malvern, PA',
-        icon: <Code size={20} />,
-        bullets: [
-            'Built a REST API service hosted on the AWS Cloud (S3, ECS, EC2, CloudWatch, CloudFront).',
-            'Delivered API to Portfolio Managers to draw financial data and inform decision-making processes.',
-            'Developed a cryptocurrency index product based on market research to determine institutional investment viability.'
-        ]
-    },
-    {
-        role: 'Lead Teaching Assistant - Quant Finance',
-        company: 'University of Maryland',
-        date: 'August 2023 - May 2024',
-        location: 'College Park, MD',
-        icon: <GraduationCap size={20} />,
-        bullets: [
-            'Lead TA for Portfolio Management (BUFN402) and BUFN400 under Professor Seokwoo Lee.',
-            'Led a pre-semester bootcamp to upskill students on Python for quantitative and financial analysis.',
-            'Developed course materials, graded assignments, and conducted office hours.'
-        ]
-    },
-    {
-        role: 'Software Intern',
-        company: 'ANB Systems, Inc.',
-        date: 'May 2021 - August 2021',
-        location: 'Houston, TX',
-        icon: <Code size={20} />,
-        bullets: [
-            'Created an error classification system to provide insights on an Optical Character Recognition (OCR) system.',
-            'Improved an ML Classifier using a bag-of-words model through a supervised training process.',
-            'Completed extensive documentation for numerous systems to support future development efforts.'
-        ]
-    }
-];
+import { Briefcase, Code } from 'lucide-react';
 
 export default function Experience() {
     const container = useRef();
 
     useGSAP(() => {
-        gsap.fromTo('.header-text', 
+        gsap.fromTo('.fade-in', 
             { y: 30, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power3.out", clearProps: "all" }
+            { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out", clearProps: "all" }
         );
-
-        gsap.utils.toArray('.timeline-item').forEach((item, i) => {
-            gsap.fromTo(item, 
-                { x: i % 2 === 0 ? -50 : 50, opacity: 0 },
-                {
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 85%',
-                    },
-                    x: 0,
-                    opacity: 1,
-                    duration: 0.8,
-                    ease: "power3.out",
-                    clearProps: "all"
-                }
-            );
-        });
-
-        gsap.fromTo('.timeline-line', 
-            { scaleY: 0 },
-            { scaleY: 1, duration: 1.5, ease: "power3.out", transformOrigin: "top", clearProps: "all" }
-        );
-
     }, { scope: container });
 
     return (
-        <div className="container mx-auto px-6 py-12 md:py-24" ref={container}>
-            <div className="max-w-4xl mb-20 text-center mx-auto">
-                <h1 className="header-text text-5xl md:text-6xl font-bold mb-6 tracking-tight">Professional <span className="text-gradient">Experience</span></h1>
-                <p className="header-text text-xl md:text-2xl text-gray-400 leading-relaxed max-w-2xl mx-auto">
+        <div className="container mx-auto px-6 py-12 md:py-24 max-w-4xl" ref={container}>
+            <div className="mb-20 text-center fade-in">
+                <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">Professional <span className="text-gradient">Experience</span></h1>
+                <p className="text-xl md:text-2xl text-gray-400 leading-relaxed max-w-2xl mx-auto">
                     My career journey bridging machine learning, cloud engineering, and quantitative finance.
                 </p>
             </div>
 
-            <div className="relative max-w-4xl mx-auto py-10">
-                {/* Center Line */}
-                <div className="timeline-line hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[var(--color-cfc-blue)] via-[var(--color-cfc-gold-bright)] to-transparent opacity-20"></div>
-
-                <div className="space-y-16 md:space-y-12">
-                    {experiences.map((exp, index) => (
-                        <div key={index} className={`timeline-item relative flex flex-col md:flex-row items-center justify-between ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                            
-                            {/* Empty space for alternate side */}
-                            <div className="hidden md:block w-5/12"></div>
-
-                            {/* Node */}
-                            <div className="absolute left-0 md:left-1/2 transform -translate-y-1/2 md:-translate-x-1/2 flex items-center justify-center w-14 h-14 rounded-full bg-[#0a0f1a] border-2 border-[var(--color-cfc-blue)] z-10 text-[var(--color-cfc-gold-bright)] shadow-[0_0_20px_rgba(3,70,148,0.6)] top-8 md:top-1/2">
-                                {exp.icon}
+            {/* Current Role */}
+            <div className="mb-20 fade-in">
+                <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3 border-b border-gray-800 pb-4">
+                    <Briefcase className="text-[var(--color-cfc-blue)]" size={24} /> 
+                    Current Role
+                </h2>
+                
+                <div className="p-8 md:p-10 rounded-3xl bg-gradient-to-br from-[#111827] to-[#0a0f1a] border border-[rgba(3,70,148,0.3)] shadow-[0_0_40px_rgba(3,70,148,0.1)] relative overflow-hidden group hover:border-[var(--color-cfc-blue)] transition-colors duration-500">
+                    <div className="absolute top-0 right-0 w-64 h-full bg-gradient-to-l from-[rgba(3,70,148,0.05)] to-transparent pointer-events-none group-hover:from-[rgba(3,70,148,0.1)] transition-colors duration-500"></div>
+                    
+                    <div className="relative z-10">
+                        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-10">
+                            <div>
+                                <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">Technology Leadership Program</h3>
+                                <div className="text-xl text-[var(--color-cfc-gold-bright)] font-semibold">Vanguard</div>
                             </div>
-
-                            {/* Content */}
-                            <div className="w-full md:w-5/12 pl-20 md:pl-0 mt-2 md:mt-0">
-                                <div className="p-8 rounded-2xl bg-[#111827]/80 backdrop-blur-md border border-gray-800 hover:border-[var(--color-cfc-blue)] transition-colors glow-on-hover relative">
-                                    <h3 className="text-2xl font-bold text-white mb-1">{exp.role}</h3>
-                                    <div className="text-[var(--color-cfc-gold-bright)] font-semibold mb-2">{exp.company}</div>
-                                    <div className="text-sm text-gray-500 mb-6 flex flex-col sm:flex-row sm:items-center gap-2">
-                                        <span>{exp.date}</span>
-                                        <span className="hidden sm:inline">•</span>
-                                        <span>{exp.location}</span>
-                                    </div>
-                                    <ul className="space-y-3">
-                                        {exp.bullets.map((bullet, i) => (
-                                            <li key={i} className="text-gray-400 text-sm leading-relaxed flex items-start gap-3">
-                                                <span className="text-[var(--color-cfc-blue)] mt-1 flex-shrink-0">▹</span>
-                                                <span>{bullet}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                            <div className="text-left md:text-right">
+                                <div className="text-gray-300 font-medium text-lg">August 2024 - Present</div>
+                                <div className="text-gray-500">Malvern, PA</div>
                             </div>
-                            
                         </div>
-                    ))}
+
+                        <div className="space-y-6">
+                            <div className="bg-[#0a0f1a]/60 p-6 md:p-8 rounded-2xl border border-gray-800/80 hover:border-gray-600 transition-colors">
+                                <h4 className="text-lg text-white font-bold mb-3 flex items-center gap-2"><span className="text-[var(--color-cfc-gold-bright)]">Rotation 3:</span> Applied AI & Developer Experience</h4>
+                                <p className="text-gray-400 leading-relaxed text-base">Contributed to Generative AI-based offerings for ETF Operations professionals to conduct research through a chat interface. Developed tools to improve developer efficiency by automating pieces of the Software Development Lifecycle.</p>
+                            </div>
+                            
+                            <div className="bg-[#0a0f1a]/60 p-6 md:p-8 rounded-2xl border border-gray-800/80 hover:border-gray-600 transition-colors">
+                                <h4 className="text-lg text-white font-bold mb-3 flex items-center gap-2"><span className="text-[var(--color-cfc-gold-bright)]">Rotation 2:</span> Data Pipeline & Metadata</h4>
+                                <p className="text-gray-400 leading-relaxed text-base">Planned and began implementation of a data reconciliation tool to validate data pipeline modernization efforts. Contributed to a Generative AI project for enterprise-wide metadata access.</p>
+                            </div>
+
+                            <div className="bg-[#0a0f1a]/60 p-6 md:p-8 rounded-2xl border border-gray-800/80 hover:border-gray-600 transition-colors">
+                                <h4 className="text-lg text-white font-bold mb-3 flex items-center gap-2"><span className="text-[var(--color-cfc-gold-bright)]">Rotation 1:</span> Cloud-Native Platforms</h4>
+                                <p className="text-gray-400 leading-relaxed text-base">Contributed to cloud-native proprietary fund accounting and pricing platform. Worked on a Generative AI Proof of Concept to expedite common reporting processes.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            {/* Previous Internships */}
+            <div className="fade-in">
+                <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3 border-b border-gray-800 pb-4">
+                    <Code className="text-[var(--color-cfc-gold-bright)]" size={24} /> 
+                    Previous Experience & Internships
+                </h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="p-8 rounded-2xl bg-[#111827] border border-gray-800 hover:border-[var(--color-cfc-blue)] transition-colors">
+                        <h3 className="text-xl font-bold text-white mb-1">Software Development Intern</h3>
+                        <div className="text-[var(--color-cfc-blue)] font-semibold text-sm mb-4">Vanguard • Summer 2023</div>
+                        <p className="text-gray-400 text-sm leading-relaxed">Built a TypeScript/React webapp connected to AWS S3 to display municipal bond metrics, improving trading decisions for fixed income security traders.</p>
+                    </div>
+
+                    <div className="p-8 rounded-2xl bg-[#111827] border border-gray-800 hover:border-[var(--color-cfc-blue)] transition-colors">
+                        <h3 className="text-xl font-bold text-white mb-1">Application Developer Intern</h3>
+                        <div className="text-[var(--color-cfc-blue)] font-semibold text-sm mb-4">Vanguard • Summer & Fall 2022</div>
+                        <p className="text-gray-400 text-sm leading-relaxed">Engineered a REST API hosted on AWS (ECS, EC2) to deliver financial data to Portfolio Managers. Conducted research on institutional cryptocurrency viability.</p>
+                    </div>
+
+                    <div className="p-8 rounded-2xl bg-[#111827] border border-gray-800 hover:border-gray-600 transition-colors">
+                        <h3 className="text-xl font-bold text-white mb-1">Lead TA - Quant Finance</h3>
+                        <div className="text-[var(--color-cfc-gold-bright)] font-semibold text-sm mb-4">University of Maryland • 2023 - 2024</div>
+                        <p className="text-gray-400 text-sm leading-relaxed">Lead TA for Portfolio Management courses. Directed a pre-semester bootcamp upskilling students in Python for financial analysis.</p>
+                    </div>
+
+                    <div className="p-8 rounded-2xl bg-[#111827] border border-gray-800 hover:border-gray-600 transition-colors">
+                        <h3 className="text-xl font-bold text-white mb-1">Software ML Intern</h3>
+                        <div className="text-[var(--color-cfc-gold-bright)] font-semibold text-sm mb-4">ANB Systems • Summer 2021</div>
+                        <p className="text-gray-400 text-sm leading-relaxed">Developed an error classification system for an OCR platform and improved an ML Classifier utilizing a supervised bag-of-words model.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 }

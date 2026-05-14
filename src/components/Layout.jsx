@@ -16,6 +16,11 @@ function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Scroll restoration
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'Selected Work', path: '/projects' },
