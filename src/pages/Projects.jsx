@@ -10,7 +10,7 @@ const projects = [
         description: 'An interactive dashboard for American soccer analytics, featuring the Tactical-Value Mapping System (TVMS) to classify player archetypes across the MLS, USLC, and NWSL.',
         tags: ['React', 'Sports Analytics', 'Machine Learning', 'Data Visualization'],
         github: null,
-        demo: null,
+        demo: 'https://sash-wat.github.io/tactical-value-system/index.html',
         demoLabel: 'Live Demo'
     },
     {
@@ -18,7 +18,7 @@ const projects = [
         description: 'A platform for dynamic, era-based curriculum vitae generation and timeline visualization.',
         tags: ['Web Development', 'React', 'Frontend'],
         github: null,
-        demo: null,
+        demo: 'https://sash-wat.github.io/vera-ghost-innings/index.html',
         demoLabel: 'Live Demo'
     },
     {
