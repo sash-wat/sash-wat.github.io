@@ -63,7 +63,7 @@ function ProjectAction({ project }) {
     return project.external ? (
         <a className="project-action" href={project.href} target="_blank" rel="noreferrer">{content}</a>
     ) : (
-        <Link className="project-action" to={project.href}>{content}</Link>
+        <Link className="project-action" to={project.href} viewTransition>{content}</Link>
     );
 }
 
@@ -82,8 +82,13 @@ export default function Projects() {
             </header>
 
             <section className="site-shell project-list" aria-label="Selected projects">
-                {projects.map((project) => (
-                    <article className={`project-row project-row-${project.accent}${project.featured ? ' is-featured' : ''}`} key={project.number}>
+                {projects.map((project, index) => (
+                    <article
+                        className={`project-row project-row-${project.accent}${project.featured ? ' is-featured' : ''}`}
+                        key={project.number}
+                        data-reveal
+                        style={{ '--reveal-delay': `${index * 55}ms` }}
+                    >
                         <div className="project-rail">
                             <span>{project.number}</span>
                             <span>{project.year}</span>

@@ -74,8 +74,13 @@ export default function Experience() {
                     </div>
 
                     <div className="rotation-list">
-                        {rotations.map((rotation) => (
-                            <article className="rotation-item" key={rotation.number}>
+                        {rotations.map((rotation, index) => (
+                            <article
+                                className="rotation-item"
+                                key={rotation.number}
+                                data-reveal
+                                style={{ '--reveal-delay': `${index * 55}ms` }}
+                            >
                                 <span>{rotation.number}</span>
                                 <div>
                                     <h3>{rotation.title}</h3>
@@ -88,7 +93,7 @@ export default function Experience() {
             </section>
 
             <section className="site-shell experience-section">
-                <div className="section-heading compact-heading">
+                <div className="section-heading compact-heading" data-reveal>
                     <div>
                         <p className="eyebrow">Earlier chapters</p>
                         <h2>Where I learned by doing.</h2>
@@ -96,8 +101,13 @@ export default function Experience() {
                 </div>
 
                 <div className="role-list">
-                    {earlierRoles.map((role) => (
-                        <article className="role-row" key={`${role.period}-${role.role}`}>
+                    {earlierRoles.map((role, index) => (
+                        <article
+                            className="role-row"
+                            key={`${role.period}-${role.role}`}
+                            data-reveal
+                            style={{ '--reveal-delay': `${index * 45}ms` }}
+                        >
                             <span className="role-period">{role.period}</span>
                             <div>
                                 <h3>{role.role}</h3>
@@ -111,7 +121,7 @@ export default function Experience() {
 
             <section className="site-shell education-section">
                 <p className="eyebrow">Education</p>
-                <div className="education-grid">
+                <div className="education-grid" data-reveal>
                     {education.map((item) => (
                         <article key={item.school}>
                             <h3>{item.school}</h3>

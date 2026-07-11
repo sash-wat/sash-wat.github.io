@@ -27,7 +27,14 @@ export default function Writing() {
 
             <section className="site-shell writing-list">
                 {notes.map((note, index) => (
-                    <Link className="writing-row" to={note.to} key={note.title}>
+                    <Link
+                        className="writing-row"
+                        to={note.to}
+                        viewTransition
+                        key={note.title}
+                        data-reveal
+                        style={{ '--reveal-delay': `${index * 55}ms` }}
+                    >
                         <span className="writing-number">0{index + 1}</span>
                         <div>
                             <p className="writing-meta">{note.label} · {note.date}</p>
@@ -38,7 +45,7 @@ export default function Writing() {
                     </Link>
                 ))}
 
-                <div className="writing-coming-soon">
+                <div className="writing-coming-soon" data-reveal>
                     <p className="eyebrow">Next notebook</p>
                     <h2>More writing when there&apos;s something worth saying.</h2>
                     <a href="mailto:sashwat.venkatesh@gmail.com?subject=Portfolio%20note" className="text-link">

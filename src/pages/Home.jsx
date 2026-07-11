@@ -48,7 +48,7 @@ const featuredWork = [
     },
 ];
 
-function ProjectLink({ project }) {
+function ProjectLink({ project, revealDelay }) {
     const content = (
         <>
             <div className="work-card-topline">
@@ -67,13 +67,30 @@ function ProjectLink({ project }) {
 
     if (project.external) {
         return (
-            <a className={`work-card work-card-${project.color}`} href={project.href} target="_blank" rel="noreferrer">
+            <a
+                className={`work-card work-card-${project.color}`}
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                data-reveal
+                style={{ '--reveal-delay': revealDelay }}
+            >
                 {content}
             </a>
         );
     }
 
-    return <Link className={`work-card work-card-${project.color}`} to={project.href}>{content}</Link>;
+    return (
+        <Link
+            className={`work-card work-card-${project.color}`}
+            to={project.href}
+            viewTransition
+            data-reveal
+            style={{ '--reveal-delay': revealDelay }}
+        >
+            {content}
+        </Link>
+    );
 }
 
 export default function Home() {
@@ -113,8 +130,13 @@ export default function Home() {
 
             <section className="focus-band" aria-label="Areas of focus">
                 <div className="site-shell focus-grid">
-                    {focusAreas.map((area) => (
-                        <article className="focus-item" key={area.number}>
+                    {focusAreas.map((area, index) => (
+                        <article
+                            className="focus-item"
+                            key={area.number}
+                            data-reveal
+                            style={{ '--reveal-delay': `${index * 55}ms` }}
+                        >
                             <span>{area.number}</span>
                             <h2>{area.title}</h2>
                             <p>{area.description}</p>
@@ -124,28 +146,34 @@ export default function Home() {
             </section>
 
             <section className="site-shell section-block" id="selected-work">
-                <div className="section-heading">
+                <div className="section-heading" data-reveal>
                     <div>
                         <p className="eyebrow">Selected work</p>
                         <h2>Ideas, made tangible.</h2>
                     </div>
-                    <Link to="/projects" className="round-link" aria-label="View all projects">
+                    <Link to="/projects" viewTransition className="round-link" aria-label="View all projects">
                         <ArrowRight size={26} />
                     </Link>
                 </div>
 
                 <div className="work-grid">
-                    {featuredWork.map((project) => <ProjectLink key={project.title} project={project} />)}
+                    {featuredWork.map((project, index) => (
+                        <ProjectLink
+                            key={project.title}
+                            project={project}
+                            revealDelay={`${index * 55}ms`}
+                        />
+                    ))}
                 </div>
             </section>
 
-            <section className="site-shell about-strip">
+            <section className="site-shell about-strip" data-reveal>
                 <p className="eyebrow">A useful generalist</p>
                 <p className="about-statement">
                     I move between <strong>model behavior</strong>, <strong>product interfaces</strong>, and
                     <strong> data infrastructure</strong>—because the interesting problems rarely stay in one lane.
                 </p>
-                <Link to="/experience" className="button-link">
+                <Link to="/experience" viewTransition className="button-link">
                     See how I got here <ArrowRight size={18} />
                 </Link>
             </section>

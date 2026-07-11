@@ -19,7 +19,7 @@ function Header() {
     return (
         <header className="site-header">
             <div className="site-shell header-inner">
-                <Link to="/" className="wordmark" aria-label="Sashwat Venkatesh, home">
+                <Link to="/" viewTransition className="wordmark" aria-label="Sashwat Venkatesh, home">
                     <span>SV</span>
                     <span className="wordmark-dot" aria-hidden="true" />
                 </Link>
@@ -29,6 +29,7 @@ function Header() {
                         <NavLink
                             key={item.to}
                             to={item.to}
+                            viewTransition
                             className={({ isActive }) => `nav-link${isActive ? ' is-active' : ''}`}
                         >
                             {item.label}
@@ -58,6 +59,7 @@ function Header() {
                             <NavLink
                                 key={item.to}
                                 to={item.to}
+                                viewTransition
                                 className="mobile-nav-link"
                                 onClick={() => setMenuOpen(false)}
                             >
@@ -110,6 +112,35 @@ function Footer() {
 }
 
 export default function Layout() {
+    const location = useLocation();
+
+    useEffect(() => {
+        const root = document.documentElement;
+        root.classList.toggle('supports-view-transitions', typeof document.startViewTransition === 'function');
+        return () => root.classList.remove('supports-view-transitions');
+    }, []);
+
+    useEffect(() => {
+        const elements = Array.from(document.querySelectorAll('[data-reveal]'));
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+            elements.forEach((element) => element.classList.add('is-revealed'));
+            return undefined;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-revealed');
+                observer.unobserve(entry.target);
+            });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+        elements.forEach((element) => observer.observe(element));
+        return () => observer.disconnect();
+    }, [location.pathname]);
+
     return (
         <div className="site-frame">
             <a className="skip-link" href="#main-content">Skip to content</a>

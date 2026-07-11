@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function SoccerAnalysis() {
     return (
         <div className="site-shell article-page page-enter">
-            <Link to="/projects" className="article-back">
+            <Link to="/projects" viewTransition className="article-back">
                 <ArrowLeft size={18} /> Back to work
             </Link>
 
@@ -43,7 +43,7 @@ export default function SoccerAnalysis() {
 
                 <h2>Model building and notes</h2>
 
-                <img src="/blog-images/plot1.png" alt="Variables coefficient plot" />
+                <img src="/blog-images/plot1.png" alt="Variables coefficient plot" data-reveal />
 
                 <p>
                     We used Elastic Net Regression due to its combination of regularization, as well as its key feature of variable selection. Variable selection in regression models allows us to find the variables/predictors that are most relevant (not equal to 0). The most significant factors driving a forward's value were:
@@ -93,7 +93,7 @@ export default function SoccerAnalysis() {
                     We can see that exactly 152 players (over half of the forwards in our dataset) have a negative differential. This indicates that there are a handful of values above the predicted value line that skews the output of the regression.
                 </p>
 
-                <img src="/blog-images/plot2.png" alt="Most valuable forwards scatter plot" />
+                <img src="/blog-images/plot2.png" alt="Most valuable forwards scatter plot" data-reveal />
 
                 <p>
                     Looking at our first graph, which plots Non-Penalty Goals against Non-Penalty Expected Goals, scaling point size with market value, we can easily see who our 5 most valuable forwards in the world are.
@@ -104,19 +104,19 @@ export default function SoccerAnalysis() {
                     <li><strong>Victor Osimhen</strong>, the Nigerian striker who led Napoli to last year’s Serie A title, finds himself in a similar statistical category as Mbappe and Haaland, with a strong (&gt;1) npG/npxG ratio.</li>
                 </ul>
 
-                <img src="/blog-images/plot3.png" alt="Added value dumbbell plot" />
+                <img src="/blog-images/plot3.png" alt="Added value dumbbell plot" data-reveal />
 
                 <p>
                     Rounding out the top six are three other top household-name forwards: Lautaro Martinez, Harry Kane, and Randal Kolo Muani. Interestingly, though, Martinez, Kane, and Kolo Muani all find themselves closer to the larger grouping of forwards in Europe, rather than the clear outliers.
                 </p>
 
-                <img src="/blog-images/plot4.png" alt="Forwards who add the most value scatter plot" />
+                <img src="/blog-images/plot4.png" alt="Forwards who add the most value scatter plot" data-reveal />
 
                 <p>
                     Looking at forwards that have market values above their predicted value, we see that five of the top six most valuable forwards remain in the top six of the forwards with the most value above prediction. For players like Haaland, Mbappe, and Osimhen, who are talismanic goalscorers, this makes some amount of sense.
                 </p>
 
-                <img src="/blog-images/plot5.png" alt="Model warning outputs and final charts" />
+                <img src="/blog-images/plot5.png" alt="Model warning outputs and final charts" data-reveal />
 
                 <p>
                     Interestingly, the six forwards present in this group have an average age of 25. In the transfer business, age and future potential (a remarkably hard thing to quantify) play an extremely pivotal role. It is unsurprising that the new addition on this list, Dusan Vlahovic, is 23 years of age, indicating the power of future potential.
