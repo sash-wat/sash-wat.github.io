@@ -1,124 +1,117 @@
-import { ExternalLink, Github, ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { useRef } from 'react';
 
 const projects = [
     {
-        title: 'League Pulse Analytics',
-        description: 'An interactive dashboard for American soccer analytics, featuring the Tactical-Value Mapping System (TVMS) to classify player archetypes across the MLS, USLC, and NWSL.',
-        tags: ['React', 'Sports Analytics', 'Machine Learning', 'Data Visualization'],
-        github: null,
-        demo: 'https://sash-wat.github.io/tactical-value-system/index.html',
-        demoLabel: 'Live Demo'
+        number: '01',
+        title: 'League Pulse',
+        type: 'Interactive product',
+        year: '2026',
+        summary: 'A tactical analytics platform built to make player profiles comparable across MLS, USL Championship, and NWSL.',
+        challenge: 'Player evaluation is noisy, role-dependent, and difficult to compare across leagues.',
+        outcome: 'A visual Tactical-Value Mapping System that groups players by how they influence the game—not only by position.',
+        tags: ['React', 'Machine learning', 'Data visualization'],
+        href: 'https://sash-wat.github.io/tactical-value-system/index.html',
+        accent: 'orange',
+        external: true,
+        featured: true,
     },
     {
+        number: '02',
+        title: 'Multimodal Deep RL',
+        type: 'Research paper',
+        year: '2024',
+        summary: 'A reinforcement learning framework for portfolio optimization using market history, SEC filings, and news embeddings.',
+        challenge: 'Financial decisions are shaped by both structured prices and unstructured narrative signals.',
+        outcome: 'A published framework that studies whether multimodal context can improve SP100 allocation strategies.',
+        tags: ['Deep reinforcement learning', 'NLP', 'Finance'],
+        href: 'https://arxiv.org/abs/2412.17293',
+        accent: 'blue',
+        external: true,
+    },
+    {
+        number: '03',
         title: 'VERA',
-        description: 'A platform for dynamic, era-based curriculum vitae generation and timeline visualization.',
-        tags: ['Web Development', 'React', 'Frontend'],
-        github: null,
-        demo: 'https://sash-wat.github.io/vera-ghost-innings/index.html',
-        demoLabel: 'Live Demo'
+        type: 'Experimental interface',
+        year: '2026',
+        summary: 'An exploration of dynamic, era-based curriculum vitae generation and timeline visualization.',
+        challenge: 'A conventional résumé flattens a career into one fixed, context-free document.',
+        outcome: 'A flexible interface for viewing experience through different moments, themes, and levels of detail.',
+        tags: ['Product design', 'React', 'Information architecture'],
+        href: 'https://sash-wat.github.io/vera-ghost-innings/index.html',
+        accent: 'lime',
+        external: true,
     },
     {
-        title: 'Multimodal Deep RL for Portfolio Optimization',
-        description: 'A reinforcement learning framework fusing historical stock data, SEC sentiment, and news embeddings to optimize SP100 trading strategies.',
-        tags: ['Machine Learning', 'Reinforcement Learning', 'Finance', 'Research'],
-        github: null,
-        demo: 'https://arxiv.org/abs/2412.17293',
-        demoLabel: 'View Paper'
+        number: '04',
+        title: 'What makes a forward valuable?',
+        type: 'Data story',
+        year: '2023',
+        summary: 'An elastic-net analysis of the football metrics that explain market value among elite attacking players.',
+        challenge: 'Goals dominate the conversation, but they are only one signal in a player’s market value.',
+        outcome: 'A readable statistical investigation spanning expected goals, progressive actions, age, and valuation gaps.',
+        tags: ['R', 'Elastic net', 'Football analytics'],
+        href: '/projects/soccer-analysis',
+        accent: 'paper',
     },
-    {
-        title: 'Statistical Valuation of Elite Forwards',
-        description: 'An interactive exploration of soccer metrics using R, revealing the hidden statistical drivers behind elite forward valuations.',
-        tags: ['Data Science', 'Sports Analytics', 'R'],
-        github: null,
-        demo: '/projects/soccer-analysis',
-        demoLabel: 'Read Post',
-        isInternal: true
-    }
 ];
 
+function ProjectAction({ project }) {
+    const label = project.type === 'Data story' ? 'Read the analysis' : project.type === 'Research paper' ? 'Read the paper' : 'Open project';
+    const content = <>{label} {project.external ? <ArrowUpRight size={19} /> : <ArrowRight size={19} />}</>;
+
+    return project.external ? (
+        <a className="project-action" href={project.href} target="_blank" rel="noreferrer">{content}</a>
+    ) : (
+        <Link className="project-action" to={project.href}>{content}</Link>
+    );
+}
+
 export default function Projects() {
-    const container = useRef();
-
-    useGSAP(() => {
-        gsap.fromTo('.header-text', 
-            { y: 30, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: "power3.out",
-                clearProps: "all"
-            }
-        );
-
-        gsap.fromTo('.project-card', 
-            { y: 50, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 0.8,
-                stagger: 0.15,
-                ease: "power3.out",
-                delay: 0.3,
-                clearProps: "all"
-            }
-        );
-    }, { scope: container });
-
     return (
-        <div className="container mx-auto px-6 py-12 md:py-24" ref={container}>
-            <div className="max-w-4xl mb-16">
-                <h1 className="header-text text-5xl md:text-6xl font-bold mb-6 tracking-tight">Showcase & <span className="text-gradient">Case Studies</span></h1>
-                <p className="header-text text-xl md:text-2xl text-gray-400 leading-relaxed max-w-2xl">
-                    A deep dive into my recent work architecting scalable solutions, predictive models, and beautiful data visualizations.
-                </p>
-            </div>
+        <div className="page-enter">
+            <header className="site-shell page-hero work-page-hero">
+                <p className="eyebrow">Work / experiments / research</p>
+                <div className="page-hero-grid">
+                    <h1>Things I&apos;ve built to understand things better.</h1>
+                    <p>
+                        The common thread is curiosity: take a complicated system, find the useful signal,
+                        and give people a clearer way to interact with it.
+                    </p>
+                </div>
+            </header>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-                {projects.map((project, index) => (
-                    <div key={index} className="project-card group rounded-2xl overflow-hidden flex flex-col border border-gray-800 bg-[#111827]/80 backdrop-blur-sm hover:border-[var(--color-cfc-blue)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(3,70,148,0.15)] relative">
-                        {/* Subtle background glow on hover */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-[rgba(3,70,148,0.1)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0"></div>
-                        
-                        <div className="p-10 flex flex-col flex-grow relative z-20">
-                            <h3 className="text-3xl font-bold text-white mb-4 group-hover:text-[var(--color-cfc-gold-bright)] transition-colors">{project.title}</h3>
-                            <p className="text-gray-400 mb-10 flex-grow text-lg leading-relaxed">{project.description}</p>
+            <section className="site-shell project-list" aria-label="Selected projects">
+                {projects.map((project) => (
+                    <article className={`project-row project-row-${project.accent}${project.featured ? ' is-featured' : ''}`} key={project.number}>
+                        <div className="project-rail">
+                            <span>{project.number}</span>
+                            <span>{project.year}</span>
+                        </div>
 
-                            <div className="flex flex-wrap gap-2 mb-8 mt-auto">
-                                {project.tags.map(tag => (
-                                    <span key={tag} className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[rgba(3,70,148,0.2)] text-[var(--color-cfc-blue)] border border-[rgba(3,70,148,0.3)] uppercase tracking-wider">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-
-                            <div className="flex gap-6 border-t border-gray-800/50 pt-6">
-                                {project.github && (
-                                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium z-30">
-                                        <Github size={18} /> Source Code
-                                    </a>
-                                )}
-                                {project.demo && (
-                                    project.isInternal ? (
-                                        <Link to={project.demo} className="text-[var(--color-cfc-gold-bright)] hover:text-white transition-colors flex items-center gap-2 text-sm font-bold uppercase tracking-wider z-30">
-                                            {project.demoLabel || 'View Project'} <ArrowRight size={18} />
-                                        </Link>
-                                    ) : (
-                                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-[var(--color-cfc-gold-bright)] hover:text-white transition-colors flex items-center gap-2 text-sm font-bold uppercase tracking-wider z-30">
-                                            <ExternalLink size={18} /> {project.demoLabel || 'Live Demo'}
-                                        </a>
-                                    )
-                                )}
+                        <div className="project-main">
+                            <p className="project-type">{project.type}</p>
+                            <h2>{project.title}</h2>
+                            <p className="project-summary">{project.summary}</p>
+                            <div className="project-tags">
+                                {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
                             </div>
                         </div>
-                    </div>
+
+                        <div className="project-detail">
+                            <div>
+                                <span className="detail-label">The question</span>
+                                <p>{project.challenge}</p>
+                            </div>
+                            <div>
+                                <span className="detail-label">The result</span>
+                                <p>{project.outcome}</p>
+                            </div>
+                            <ProjectAction project={project} />
+                        </div>
+                    </article>
                 ))}
-            </div>
+            </section>
         </div>
     );
 }

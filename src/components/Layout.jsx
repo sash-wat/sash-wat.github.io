@@ -1,85 +1,78 @@
-import { Outlet, Link, useLocation } from 'react-router-dom';
-import { cn } from '../lib/utils';
-import { Menu, X, Github, Linkedin, Twitter } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+import { ArrowUpRight, Github, Linkedin, Menu, X } from 'lucide-react';
+
+const navigation = [
+    { label: 'Work', to: '/projects' },
+    { label: 'Experience', to: '/experience' },
+    { label: 'Writing', to: '/writing' },
+];
 
 function Header() {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    // Scroll restoration
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [location.pathname]);
 
-    const navLinks = [
-        { name: 'Home', path: '/' },
-        { name: 'Selected Work', path: '/projects' },
-        { name: 'Experience', path: '/experience' },
-    ];
-
     return (
-        <header className={cn(
-            'fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent',
-            isScrolled ? 'bg-[#0a0f1a]/80 backdrop-blur-md border-[rgba(3,70,148,0.3)] shadow-lg' : 'bg-transparent'
-        )}>
-            <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-                <Link to="/" className="text-2xl font-bold tracking-tighter">
-                    <span className="text-white">SV</span>
-                    <span className="text-[var(--color-cfc-gold-bright)]">.</span>
+        <header className="site-header">
+            <div className="site-shell header-inner">
+                <Link to="/" className="wordmark" aria-label="Sashwat Venkatesh, home">
+                    <span>SV</span>
+                    <span className="wordmark-dot" aria-hidden="true" />
                 </Link>
 
-                {/* Desktop Nav */}
-                <nav className="hidden md:flex gap-8 items-center">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            to={link.path}
-                            className={cn(
-                                'text-sm font-medium transition-colors hover:text-[var(--color-cfc-gold-bright)]',
-                                location.pathname === link.path ? 'text-[var(--color-cfc-gold-bright)]' : 'text-gray-300'
-                            )}
+                <nav className="desktop-nav" aria-label="Primary navigation">
+                    {navigation.map((item) => (
+                        <NavLink
+                            key={item.to}
+                            to={item.to}
+                            className={({ isActive }) => `nav-link${isActive ? ' is-active' : ''}`}
                         >
-                            {link.name}
-                        </Link>
+                            {item.label}
+                        </NavLink>
                     ))}
-                    <a href="mailto:sashwat.venkatesh@gmail.com" className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-cfc-blue)] text-sm font-medium text-white hover:bg-[var(--color-cfc-blue)] transition-all">
-                        Contact
-                    </a>
                 </nav>
 
-                {/* Mobile Nav Toggle */}
+                <a className="header-contact" href="mailto:sashwat.venkatesh@gmail.com">
+                    Start a conversation <ArrowUpRight size={16} strokeWidth={2.2} />
+                </a>
+
                 <button
-                    className="md:hidden text-white"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    type="button"
+                    className="menu-toggle"
+                    aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+                    aria-expanded={menuOpen}
+                    onClick={() => setMenuOpen((open) => !open)}
                 >
-                    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    {menuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
-            {/* Mobile Menu */}
-            {mobileMenuOpen && (
-                <div className="md:hidden absolute top-20 w-full bg-[#111827] border-b border-[var(--color-border)] shadow-xl pb-6 px-6">
-                    <nav className="flex flex-col gap-4 pt-4">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                to={link.path}
-                                className="text-lg font-medium text-gray-300 hover:text-[var(--color-cfc-gold-bright)]"
-                                onClick={() => setMobileMenuOpen(false)}
+            {menuOpen && (
+                <div className="mobile-menu">
+                    <nav className="site-shell mobile-nav" aria-label="Mobile navigation">
+                        {navigation.map((item, index) => (
+                            <NavLink
+                                key={item.to}
+                                to={item.to}
+                                className="mobile-nav-link"
+                                onClick={() => setMenuOpen(false)}
                             >
-                                {link.name}
-                            </Link>
+                                <span>0{index + 1}</span>
+                                {item.label}
+                            </NavLink>
                         ))}
+                        <a
+                            className="mobile-nav-link mobile-contact"
+                            href="mailto:sashwat.venkatesh@gmail.com"
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            <span>04</span>
+                            Contact
+                        </a>
                     </nav>
                 </div>
             )}
@@ -89,26 +82,39 @@ function Header() {
 
 function Footer() {
     return (
-        <footer className="border-t border-[var(--color-border)] bg-[#0a0f1a] py-12 mt-20">
-            <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div className="text-gray-400 text-sm flex items-center gap-2">
-                    <span>© {new Date().getFullYear()} Sashwat. All rights reserved.</span>
+        <footer className="site-footer">
+            <div className="site-shell footer-grid">
+                <div>
+                    <p className="eyebrow footer-eyebrow">Open to good conversations</p>
+                    <h2>Have a strange, useful idea?</h2>
+                    <a className="footer-email" href="mailto:sashwat.venkatesh@gmail.com">
+                        Let&apos;s talk <ArrowUpRight size={24} />
+                    </a>
                 </div>
 
-                <div className="flex items-center gap-6">
-                    <a href="https://github.com/sash-wat" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-cfc-gold-bright)] transition-colors"><Github size={20} /></a>
-                    <a href="https://www.linkedin.com/in/sashvenk/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-cfc-gold-bright)] transition-colors"><Linkedin size={20} /></a>
-                    <a href="https://x.com/sash_wat117" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-cfc-gold-bright)] transition-colors"><Twitter size={20} /></a>
-                </div>            </div>
+                <div className="footer-meta">
+                    <div className="footer-links">
+                        <a href="https://github.com/sash-wat" target="_blank" rel="noreferrer">
+                            <Github size={18} /> GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/sashvenk/" target="_blank" rel="noreferrer">
+                            <Linkedin size={18} /> LinkedIn
+                        </a>
+                    </div>
+                    <p>Applied AI, data products, and football.</p>
+                    <p>© {new Date().getFullYear()} Sashwat Venkatesh</p>
+                </div>
+            </div>
         </footer>
     );
 }
 
 export default function Layout() {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="site-frame">
+            <a className="skip-link" href="#main-content">Skip to content</a>
             <Header />
-            <main className="flex-grow pt-20">
+            <main id="main-content">
                 <Outlet />
             </main>
             <Footer />
