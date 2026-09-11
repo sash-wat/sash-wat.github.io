@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom';
 
 const notes = [
     {
+        label: 'NFL field notes · Week 1',
+        title: 'Drake Maye’s opener wasn’t bad. His ending was.',
+        date: 'September 2026',
+        description: 'Three interceptions, one defensive identity, and the first entries in a season-long team ledger.',
+        to: '/writing/nfl-2026-week-1-patriots-seahawks',
+    },
+    {
         label: 'Research note',
         title: 'What makes a forward valuable?',
         date: 'December 2023',
@@ -46,8 +53,8 @@ export default function Writing() {
                 ))}
 
                 <div className="writing-coming-soon" data-reveal>
-                    <p className="eyebrow">Next notebook</p>
-                    <h2>More writing when there&apos;s something worth saying.</h2>
+                    <p className="eyebrow">The 2026 notebook</p>
+                    <h2>One week at a time. Thirty-two team profiles by January.</h2>
                     <a href="mailto:sashwat.venkatesh@gmail.com?subject=Portfolio%20note" className="text-link">
                         Suggest a topic <ArrowUpRight size={18} />
                     </a>

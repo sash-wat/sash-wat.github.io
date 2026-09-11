@@ -5,6 +5,7 @@ import Projects from './pages/Projects';
 import Experience from './pages/Experience';
 import SoccerAnalysis from './pages/SoccerAnalysis';
 import Writing from './pages/Writing';
+import NFLWeek1Kickoff from './pages/NFLWeek1Kickoff';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="experience" element={<Experience />} />
           <Route path="projects/soccer-analysis" element={<SoccerAnalysis />} />
           <Route path="writing" element={<Writing />} />
+          <Route path="writing/nfl-2026-week-1-patriots-seahawks" element={<NFLWeek1Kickoff />} />
         </Route>
       </Routes>
     </Router>

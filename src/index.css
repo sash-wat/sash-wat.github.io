@@ -1106,6 +1106,281 @@ img {
   line-height: 1.6;
 }
 
+/* NFL field notes */
+.nfl-article {
+  --nfl-navy: #071b33;
+  --nfl-blue: #69c9d0;
+  --nfl-red: #c91f3b;
+}
+
+.nfl-article-header {
+  margin-bottom: 52px;
+}
+
+.nfl-deck {
+  max-width: 760px;
+  margin: -8px 0 32px;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: clamp(1.22rem, 2vw, 1.58rem);
+  line-height: 1.55;
+}
+
+.nfl-scoreboard {
+  width: min(100%, 960px);
+  margin: 0 0 80px clamp(0px, 7vw, 100px);
+  border: 1.5px solid var(--line);
+  background: var(--nfl-navy);
+  color: var(--white);
+  box-shadow: 12px 12px 0 var(--lime);
+}
+
+.nfl-scoreboard-meta,
+.nfl-scoreboard-note {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0;
+  padding: 14px 22px;
+  color: rgba(255, 253, 247, 0.72);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.nfl-scoreboard-meta {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.nfl-score-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  min-height: 118px;
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.nfl-score-row > div {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.nfl-score-row p {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  font-size: clamp(1.35rem, 2.6vw, 2.15rem);
+  letter-spacing: -0.04em;
+}
+
+.nfl-score-row small {
+  color: rgba(255, 253, 247, 0.65);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+.nfl-score-row--winner {
+  background: rgba(105, 201, 208, 0.1);
+}
+
+.nfl-team-mark {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+}
+
+.nfl-team-mark--ne { color: #ef4b64; }
+.nfl-team-mark--sea { color: #76d2d8; }
+
+.nfl-score {
+  font-size: clamp(3rem, 6vw, 5.2rem);
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.nfl-scoreboard-note {
+  justify-content: flex-end;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.nfl-stat-ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: min(1100px, calc(100vw - 48px));
+  margin: 2.4em 0 2.4em clamp(-190px, -13vw, 0px);
+  border: 1.5px solid var(--line);
+  background: var(--paper-light);
+  font-family: var(--display);
+}
+
+.nfl-stat-ribbon > div {
+  display: grid;
+  gap: 8px;
+  padding: 28px 20px;
+  border-right: 1.5px solid var(--line);
+}
+
+.nfl-stat-ribbon > div:last-child {
+  border-right: 0;
+}
+
+.nfl-stat-ribbon strong {
+  font-size: clamp(1.7rem, 3vw, 2.8rem);
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.nfl-stat-ribbon span {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.nfl-callout {
+  display: grid;
+  gap: 12px;
+  background: var(--nfl-navy);
+  color: var(--white);
+}
+
+.nfl-callout > span {
+  color: var(--nfl-blue);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nfl-callout > strong {
+  font-size: 1.3em;
+  line-height: 1.3;
+}
+
+.nfl-callout p {
+  margin: 0;
+  color: rgba(255, 253, 247, 0.75);
+}
+
+.nfl-ledger-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 54px 0 90px;
+  border: 1.5px solid var(--line);
+  box-shadow: 12px 12px 0 var(--ink);
+}
+
+.nfl-team-ledger {
+  padding: clamp(28px, 4vw, 48px);
+}
+
+.nfl-team-ledger--patriots {
+  background: var(--paper-light);
+}
+
+.nfl-team-ledger--seahawks {
+  border-left: 1.5px solid var(--line);
+  background: var(--nfl-blue);
+}
+
+.nfl-ledger-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.nfl-ledger-heading h3 {
+  margin: 12px 0 0;
+  font-size: clamp(2rem, 3.8vw, 3.8rem);
+  letter-spacing: -0.065em;
+  line-height: 0.98;
+}
+
+.nfl-ledger-heading > span {
+  flex: 0 0 auto;
+  padding: 8px 10px;
+  border: 1.5px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+}
+
+.nfl-ledger-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 36px 0;
+  border-top: 1.5px solid var(--line);
+  border-left: 1.5px solid var(--line);
+}
+
+.nfl-ledger-metrics div {
+  padding: 16px;
+  border-right: 1.5px solid var(--line);
+  border-bottom: 1.5px solid var(--line);
+}
+
+.nfl-ledger-metrics dt {
+  margin-bottom: 8px;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+.nfl-ledger-metrics dd {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.nfl-profile-line {
+  margin: 0 0 16px;
+  line-height: 1.65;
+}
+
+.nfl-closing {
+  margin-bottom: 70px;
+}
+
+.nfl-sources {
+  margin-top: 70px;
+  padding-top: 28px;
+  border-top: 1.5px solid var(--line);
+  font-family: var(--display);
+  font-size: 0.82em;
+}
+
+.nfl-sources .eyebrow {
+  margin-bottom: 16px;
+}
+
+.nfl-sources a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.nfl-sources svg {
+  flex: 0 0 auto;
+}
+
 /* Footer */
 .site-footer {
   border-top: 1.5px solid var(--line);
@@ -1492,6 +1767,60 @@ img {
   .article-prose img {
     width: 100%;
     margin-left: 0;
+  }
+
+  .nfl-scoreboard {
+    margin-left: 0;
+    box-shadow: 7px 7px 0 var(--lime);
+  }
+
+  .nfl-scoreboard-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .nfl-score-row {
+    min-height: 96px;
+    padding-inline: 16px;
+  }
+
+  .nfl-score-row > div {
+    gap: 12px;
+  }
+
+  .nfl-team-mark {
+    width: 42px;
+    height: 42px;
+    font-size: 0.64rem;
+  }
+
+  .nfl-scoreboard-note {
+    justify-content: flex-start;
+  }
+
+  .nfl-stat-ribbon {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .nfl-stat-ribbon > div:nth-child(2) {
+    border-right: 0;
+  }
+
+  .nfl-stat-ribbon > div:nth-child(-n + 2) {
+    border-bottom: 1.5px solid var(--line);
+  }
+
+  .nfl-ledger-grid {
+    grid-template-columns: 1fr;
+    box-shadow: 7px 7px 0 var(--ink);
+  }
+
+  .nfl-team-ledger--seahawks {
+    border-top: 1.5px solid var(--line);
+    border-left: 0;
   }
 
   .footer-grid {
