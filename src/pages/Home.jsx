@@ -115,7 +115,7 @@ export default function Home() {
                         </p>
                         <div className="hero-note-rule" />
                         <p className="hero-note-small">
-                            Currently in Vanguard&apos;s Technology Leadership Program and studying computer science at Georgia Tech.
+                            Currently an Applied AI Engineer at Vanguard and studying computer science at Georgia Tech.
                         </p>
                         <a href="mailto:sashwat.venkatesh@gmail.com" className="text-link">
                             Get in touch <ArrowUpRight size={18} />

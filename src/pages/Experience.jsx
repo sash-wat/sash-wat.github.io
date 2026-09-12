@@ -1,24 +1,31 @@
 import { ArrowUpRight } from 'lucide-react';
 
-const rotations = [
+const currentFocus = [
     {
-        number: '03',
-        title: 'Applied AI & Developer Experience',
-        body: 'Built generative AI experiences for ETF Operations research and tools that automate parts of the software development lifecycle.',
+        number: '01',
+        title: 'Agentic Software Delivery',
+        body: 'Enabling the next generation of agentic software delivery for large-scale investment systems, architecting autonomous workflows and developer tooling.',
     },
     {
         number: '02',
-        title: 'Data Pipeline & Metadata',
-        body: 'Planned a reconciliation product for data-platform modernization and contributed to enterprise metadata access through generative AI.',
-    },
-    {
-        number: '01',
-        title: 'Cloud-Native Platforms',
-        body: 'Worked on fund accounting and pricing systems, plus an early generative AI concept for streamlining reporting workflows.',
+        title: 'SDLC AI Enhancement',
+        body: 'Enhancing the software development lifecycle using AI to modernize engineering workflows, streamline testing and review processes, and elevate delivery velocity.',
     },
 ];
 
 const earlierRoles = [
+    {
+        period: '2024–26',
+        role: 'Technology Leadership Program',
+        org: 'Vanguard',
+        body: 'Completed three engineering rotations across Applied AI & Developer Experience, Data Pipelines & Metadata, and Cloud-Native Platforms (August 2024 — July 2026)—building generative AI tools for ETF operations, data reconciliation systems, and fund pricing engines.',
+    },
+    {
+        period: '2023–24',
+        role: 'Lead TA, Quantitative Finance',
+        org: 'University of Maryland',
+        body: 'Led portfolio management course support and a Python bootcamp for financial analysis.',
+    },
     {
         period: '2023',
         role: 'Software Development Intern',
@@ -30,12 +37,6 @@ const earlierRoles = [
         role: 'Application Developer Intern',
         org: 'Vanguard',
         body: 'Engineered an AWS-hosted REST API delivering financial data to portfolio managers and researched institutional crypto viability.',
-    },
-    {
-        period: '2023–24',
-        role: 'Lead TA, Quantitative Finance',
-        org: 'University of Maryland',
-        body: 'Led portfolio management course support and a Python bootcamp for financial analysis.',
     },
     {
         period: '2021',
@@ -68,23 +69,23 @@ export default function Experience() {
                 <div className="site-shell current-grid">
                     <div className="current-heading">
                         <p className="eyebrow">Now</p>
-                        <h2>Technology Leadership Program</h2>
+                        <h2>Applied AI Engineer</h2>
                         <p className="current-org">Vanguard · Malvern, PA</p>
-                        <p className="current-date">August 2024 — Present</p>
+                        <p className="current-date">August 2026 — Present</p>
                     </div>
 
                     <div className="rotation-list">
-                        {rotations.map((rotation, index) => (
+                        {currentFocus.map((item, index) => (
                             <article
                                 className="rotation-item"
-                                key={rotation.number}
+                                key={item.number}
                                 data-reveal
                                 style={{ '--reveal-delay': `${index * 55}ms` }}
                             >
-                                <span>{rotation.number}</span>
+                                <span>{item.number}</span>
                                 <div>
-                                    <h3>{rotation.title}</h3>
-                                    <p>{rotation.body}</p>
+                                    <h3>{item.title}</h3>
+                                    <p>{item.body}</p>
                                 </div>
                             </article>
                         ))}
