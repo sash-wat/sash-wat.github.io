@@ -4,12 +4,7 @@ const currentFocus = [
     {
         number: '01',
         title: 'Agentic Software Delivery',
-        body: 'Enabling the next generation of agentic software delivery for large-scale investment systems, architecting autonomous workflows and developer tooling.',
-    },
-    {
-        number: '02',
-        title: 'SDLC AI Enhancement',
-        body: 'Enhancing the software development lifecycle using AI to modernize engineering workflows, streamline testing and review processes, and elevate delivery velocity.',
+        body: 'Enhancing the software development lifecycle using AI to enable the next generation of agentic software delivery for large-scale investment systems—architecting autonomous workflows, intelligent developer tooling, and modern delivery pipelines.',
     },
 ];
 

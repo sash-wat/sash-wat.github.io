@@ -772,6 +772,10 @@ img {
   border-bottom: 0;
 }
 
+.rotation-item:only-child {
+  padding: 70px 0 80px;
+}
+
 .rotation-item > span {
   padding-top: 6px;
   color: var(--lime);
